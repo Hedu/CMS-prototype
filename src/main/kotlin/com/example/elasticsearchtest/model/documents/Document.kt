@@ -2,6 +2,7 @@ package com.example.elasticsearchtest.model.documents
 
 import com.example.elasticsearchtest.model.fields.Field
 import com.example.elasticsearchtest.repository.util.DocumentTypeRepositoryUtil
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonSetter
 import org.springframework.data.annotation.Id
@@ -9,24 +10,36 @@ import org.springframework.data.elasticsearch.annotations.Document
 import org.springframework.data.elasticsearch.annotations.FieldType
 
 @Document(indexName = "document")
-class Document(name: String, documentType: DocumentType, fields: List<Field<*>>) {
+class Document {
     @Id
     var id: String = ""
 
-    val name: String = name
+    var name: String? = null
 
-    var documentType = documentType
+    var documentType: DocumentType? = null
+
+    val documentTypeString: String?
+        @JsonProperty("documentType")
+        get() = documentType?.name
 
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Nested, includeInParent = true)
-    val fields: List<Field<*>> = fields
+    var fields: List<Field<*>>? = null
 
-    @JsonProperty("documentType")
-    fun getDocumentTypeString(): String {
-        return documentType.name
+    constructor() {}
+
+    constructor(name: String, documentType: DocumentType, fields: List<Field<*>>) {
+        init(name, documentType, fields)
     }
 
-    @JsonSetter("documentType")
-    fun setDocumentTypeString(name: String) {
-        documentType = DocumentTypeRepositoryUtil.findByName(name)!!
+    @JsonCreator
+    constructor(name: String, @JsonProperty("documentType") documentTypeName: String, fields: List<Field<*>>) {
+        init(name, DocumentTypeRepositoryUtil.findByName(documentTypeName)!!, fields)
     }
+
+    fun init(name: String, documentType: DocumentType, fields: List<Field<*>>) {
+        this.name = name
+        this.documentType = documentType
+        this.fields = fields
+    }
+
 }

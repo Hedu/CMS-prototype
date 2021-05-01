@@ -1,6 +1,4 @@
 package com.example.elasticsearchtest.model.settings
 
-class Setting<T>(name: String, value: T) {
-    val name: String = name
-    val value: T = value
+data class Setting<T>(val name: String, val value: T) {
 }
