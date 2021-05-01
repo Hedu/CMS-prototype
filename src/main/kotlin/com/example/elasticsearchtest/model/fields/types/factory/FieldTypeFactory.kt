@@ -5,5 +5,7 @@ import java.util.*
 
 interface FieldTypeFactory {
 
+    fun getFieldTypes(): List<FieldType<*>>
+
     fun getFieldType(name: String): Optional<FieldType<*>>
 }
