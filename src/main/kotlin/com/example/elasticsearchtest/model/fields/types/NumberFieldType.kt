@@ -16,8 +16,7 @@ class NumberFieldType() : FieldType<Number> {
 
     override fun getSettingDefinitions(): List<SettingDefinition> {
         return asList(
-                SettingDefinition("decimal", SettingDefinition.SettingType.BOOLEAN),
-                SettingDefinition("editor", SettingDefinition.SettingType.BOOLEAN))
+                SettingDefinition("decimal", SettingDefinition.SettingType.BOOLEAN))
     }
 
 
