@@ -27,7 +27,7 @@ class DocumentTypeController(val documentTypeRepository: DocumentTypeRepository)
     }
 
     @PostMapping()
-    fun getOne(@RequestBody documentType: DocumentType): DocumentType {
+    fun save(@RequestBody documentType: DocumentType): DocumentType {
 
         return documentTypeRepository.save(documentType);
     }

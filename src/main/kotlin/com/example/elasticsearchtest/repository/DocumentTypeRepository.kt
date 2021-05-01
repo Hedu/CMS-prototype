@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable
 
 
 interface DocumentTypeRepository: ElasticsearchRepository<DocumentType, String> {
-    fun findByName(name: String, pageable: Pageable): Page<DocumentType>
+    fun findByName(name: String): DocumentType
 }
