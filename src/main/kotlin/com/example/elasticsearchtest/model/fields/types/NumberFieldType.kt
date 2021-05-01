@@ -1,6 +1,6 @@
 package com.example.elasticsearchtest.model.fields.types
 
-import com.example.elasticsearchtest.model.settings.Setting
+import com.example.elasticsearchtest.model.settings.SettingDefinition
 import org.springframework.stereotype.Component
 import java.util.Arrays.asList
 
@@ -14,8 +14,11 @@ class NumberFieldType() : FieldType<Number> {
         return Number::class.java
     }
 
-    override fun getSettings():List<Setting<*>> {
-        return asList(Setting<Boolean>("decimal", false))
+    override fun getSettingDefinitions(): List<SettingDefinition> {
+        return asList(
+                SettingDefinition("decimal", SettingDefinition.SettingType.BOOLEAN),
+                SettingDefinition("editor", SettingDefinition.SettingType.BOOLEAN))
     }
+
 
 }
