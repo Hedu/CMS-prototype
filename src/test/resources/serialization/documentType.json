@@ -1,0 +1,50 @@
+{
+  "name": "testDocType",
+  "fields": [
+    {
+      "name": "firstName",
+      "fieldType": "text",
+      "value": "First Name placeholder",
+      "settings": [
+        {
+          "name": "multiline",
+          "value": false
+        },
+        {
+          "name": "editor",
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "lastName",
+      "fieldType": "text",
+      "value": "Last Name placeholder",
+      "settings": [
+        {
+          "name": "multiline",
+          "value": false
+        },
+        {
+          "name": "editor",
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "email",
+      "fieldType": "text",
+      "value": "Email placeholder",
+      "settings": [
+        {
+          "name": "multiline",
+          "value": false
+        },
+        {
+          "name": "editor",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
